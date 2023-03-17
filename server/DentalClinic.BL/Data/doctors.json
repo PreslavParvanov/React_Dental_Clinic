@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "24d0c2e0-50c8-4979-a095-530342094631",
+    "Name": "Dr. Simona Dilchovska",
+    "Qualification": "Surgery",
+    "MoreInfo": "You can make individual inquiries and request additional information by using the page Contacts. Our specialists will be glad to answer all of your inquiries and questions. You can call us for consultation or to make an appointment for check-up and opinion."
+  },
+  {
+    "Id": "b616a037-3205-41f4-bcf2-cc6e5ccb6175",
+    "Name": "Dr. Ivanova",
+    "Qualification": "Orthodontist",
+    "MoreInfo": "5 year"
+  },
+  {
+    "Id": "8fb2cc4d-78c6-4eb3-91e1-66424bfaebde",
+    "Name": "Dr. Radeva",
+    "Qualification": "Dentist",
+    "MoreInfo": "2 year"
+  },
+  {
+    "Id": "55a5a636-3177-4637-a58e-ff736763f26d",
+    "Name": "Dr. Ivanka Pavlova",
+    "Qualification": "Dentist",
+    "MoreInfo": "1 year"
+  }
+]

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>DentalClinic.Api</name>
+  </assembly>
+  <members>
+    <member name="M:DentalClinic.Api.Controllers.TeamController.#ctor(DentalClinic.DentalClinic.BL.Contracts.IDoctorService)">
+      <summary>
+
+      </summary>
+      <param name="_doctorService"></param>
+    </member>
+    <member name="M:DentalClinic.Api.Controllers.TeamController.Team">
+      <summary>
+        Get All doctors
+      </summary>
+      <returns></returns>
+    </member>
+    <member name="M:DentalClinic.Api.Controllers.TeamController.GetDoctorById">
+      <summary>
+        Get doctor by id
+      </summary>
+      <returns></returns>
+    </member>
+  </members>
+</doc>

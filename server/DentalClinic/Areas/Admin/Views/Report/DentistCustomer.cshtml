@@ -1,0 +1,23 @@
+﻿@model DoctorCustomerViewModel
+@{
+    ViewData["Title"] = "Report Doctor Customer";
+}
+
+<h1 class="text-center">Report doctor customer</h1>
+<form class="doctor-scedul-form" method="post">
+    <div class="doctor-scedul-field">
+        <select asp-for="@Model.DoctorId" class="form-control">
+            @foreach (var doctor in Model.Doctors)
+            {
+                <option value="@doctor.Id">@doctor.Name</option>
+            }
+        </select>
+    </div>
+    <div class="doctor-scedul-field">
+        <input asp-for="@Model.DateTimeSchedule" type="date" name="DateTimeSchedule" value="@DateTime.Now.Year-@DateTime.Now.Month-@DateTime.Now.Day">
+    </div>
+    <span asp-validation-for="@Model.DateTimeSchedule" class="small text-danger"></span>
+    <div>
+        <button class="usr-btn" type="submit">Search</button>
+    </div>
+</form>

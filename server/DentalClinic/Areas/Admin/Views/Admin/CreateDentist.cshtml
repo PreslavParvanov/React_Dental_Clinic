@@ -1,0 +1,30 @@
+﻿@model DoctorViewModel
+@{
+    ViewData["Title"] = "Create Dentist";
+}
+<h1 class="create-dentist">Create Dentist</h1>
+<form class="create-dentist-form" asp-area="Admin" asp-action="CreateDentist" asp-controller="Admin" enctype="multipart/form-data" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-field">
+        <input asp-for="@Model.Name" type="text" name="name" placeholder="Name" required />
+    </div>
+    <span asp-validation-for="@Model.Name" class="small text-danger"></span>
+    <div class="form-field">
+        <input asp-for="@Model.Qualification" type="text" name="qualification" placeholder="Qualification" required />
+    </div>
+    <span asp-validation-for="@Model.Qualification" class="small text-danger"></span>
+    <div class="form-field">
+        <input asp-for="@Model.MoreInfo" type="text" name="moreInfo" placeholder="More Info" required />
+    </div>
+    <span asp-validation-for="@Model.MoreInfo" class="small text-danger"></span>
+    <div class="form-field">
+        <input  type="file" name="img" accept="image/*">
+    </div>
+    <div>
+        <button class="usr-btn" type="submit">Save</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

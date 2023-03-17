@@ -1,0 +1,72 @@
+﻿@model ReceptionCustomerViewModel
+@{
+    ViewData["Title"] = "Reception";
+}
+<h1 class="text-center">Reception</h1>
+<form class="reception-form" method="post" asp-area="Admin" asp-controller="Reception" asp-action="ReceptionCustomerServices">
+    <div class="container h-100 d-flex justify-content-center">
+        <input type="text" name="DoctorName" value="@Model.DoctorName" readonly>
+    </div>
+    <br />
+    <div class="container h-100 d-flex justify-content-center">
+        <input type="text" name="CustomerName" value="@Model.CustomerName" readonly>
+    </div>
+    <br />
+    <div class="container h-100 d-flex justify-content-center">
+        <input type="text" name="DateTimeSchedule" value="@Model.DateTimeSchedule" readonly>
+    </div>
+    <br />
+    <div>
+        <button class="usr-btn" type="submit" id="save">Save</button>
+    </div>
+    <div>
+        <input type="submit" id="addRow" value="+">
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <td scope="col"><input type="submit" class="removeRow" value="-"></td>
+                    <td scope="col" >
+                        <select asp-for="@Model.CustomerPhone" name="Test" class="form-control">
+                            @foreach (var service in Model.DentalServices)
+                            {
+                                <option value="@service.Id">@service.ServiceName</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+<script>
+    var btnRemoveRow = document.querySelectorAll('.removeRow');
+    btnRemoveRow[0].addEventListener('click', function (e) {
+        e.preventDefault();
+        let element = e.srcElement;
+        element.parentNode.parentNode.remove();
+    });
+
+    var btnAddRow = document.getElementById('addRow');
+    btnAddRow.addEventListener('click', function (e) {
+        e.preventDefault();
+        let table = document.querySelectorAll('table');
+        let tableRow = table[0].querySelectorAll('tr');
+        let tr = tableRow[1].cloneNode(true);
+        tr.querySelector('input').addEventListener('click', function (e) {
+            e.preventDefault();
+            let element = e.srcElement;
+            element.parentNode.parentNode.remove();
+        });
+        table[0].querySelectorAll('tbody')[0].appendChild(tr);
+        var myBtn = document.getElementById('addRow');
+    });
+
+</script>

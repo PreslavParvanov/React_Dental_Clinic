@@ -1,0 +1,29 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1 class="login">Login</h1>
+<form class="login-form" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-field">
+        <input asp-for="Email" type="email" name="Email" placeholder="Email" required />
+    </div>
+    <span asp-validation-for="@Model.Email" class="small text-danger"></span>
+    <div class="form-field">
+        <input asp-for="@Model.Password" type="password" name="Password" placeholder="Password" required />
+    </div>
+    <span asp-validation-for="Password" class="small text-danger"></span>
+    <p>@ViewBag.Message</p>
+    <div class="form-field">
+        <button class="usr-btn" type="submit">Log in</button>
+    </div>
+    <div class="container h-100 d-flex justify-content-center">
+        <a class="reg" asp-controller="Users" asp-action="Registration">Registration</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+     
+}

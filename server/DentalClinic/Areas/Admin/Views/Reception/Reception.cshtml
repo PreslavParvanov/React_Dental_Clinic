@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Reception";
+}
+<h1 class="text-center">Reception</h1>
+<form class="reception-form" method="post" asp-action="Reception" asp-controller="Reception">
+    <div class="container h-100 d-flex justify-content-center">
+        <input type="date" name="DateSearch" value="@ViewBag.dateSearch">
+    </div>
+    <div>
+        <button class="usr-btn" type="submit">Search</button>
+    </div>
+</form>

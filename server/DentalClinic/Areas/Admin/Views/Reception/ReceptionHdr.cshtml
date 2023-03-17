@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ReceptionViewModel>
+@{
+    ViewData["Title"] = "Reception";
+}
+<h1 class="text-center">Reception</h1>
+<a class="text-left" asp-controller="Reception" asp-action="Reception">Back</a>
+@{
+    if (Model != null)
+    {
+
+        HashSet<string> doctors = Model.Select(ds => ds.DoctorName).ToHashSet<string>();
+        string[,] matrix = new string[20, doctors.Count() + 1];
+        matrix[0, 0] = "";
+
+        TimeSpan timeTemp = new TimeSpan(09, 30, 00);
+
+        for (int row = 0; row < 20; row++)
+        {
+            for (int col = 0; col < doctors.Count() + 1; col++)
+            {
+                if (row == 0 && col > 0)
+                {
+                    matrix[row, col] = doctors.ElementAt(col - 1);
+                }
+                if (col == 0 && row > 0)
+                {
+                    timeTemp = timeTemp + new TimeSpan(00, 30, 00);
+                    DateTime currentDataTime = ViewBag.dateSearch + timeTemp;
+                    matrix[row, 0] = currentDataTime.ToString();
+
+                }
+                if (col > 0 && row > 0)
+                {
+                    string doc = matrix[0, col];
+                    DateTime currentDataTime = ViewBag.dateSearch + timeTemp;
+                    string currentCustomerName = Model.Where(ds => ds.DoctorName == doc && ds.DateTimeSchedule == currentDataTime).Select(ds => ds.CustomerName).FirstOrDefault();
+                    string doctorId = Model.Where(ds => ds.DoctorName == doc && ds.DateTimeSchedule == currentDataTime).Select(ds => ds.DoctorId.ToString()).FirstOrDefault();
+                    string customerId = Model.Where(ds => ds.DoctorName == doc && ds.DateTimeSchedule == currentDataTime).Select(ds => ds.CustomerId.ToString()).FirstOrDefault();
+                    string currentString = $"{currentCustomerName};{doctorId};{customerId};{currentDataTime}";
+                    if (currentCustomerName != null)
+                    {
+                        matrix[row, col] = currentString;
+                    }
+
+                }
+
+            }
+        }
+
+        <table class="tbl-team">
+            @{
+                for (int row = 0; row < 20; row++)
+                {
+                    <tr>
+                        @{
+                            for (int col = 0; col < doctors.Count() + 1; col++)
+                            {
+                                if (col > 0 && row > 0 && @matrix[row, col] != null)
+                                {
+                                    <td scope="col" scope="col">
+                                        <form method="post" asp-area="Admin" asp-controller="Reception" asp-action="ReceptionCustomer">
+                                            @{
+                                                List<string> matrxInfo = matrix[row, col].Split(';').ToList();
+                                            }
+                                            <input asp-for="@matrxInfo[1]" type="text" name="DoctorId" placeholder="DoctorId" required hidden />
+                                            <input asp-for="@matrxInfo[2]" type="text" name="CustomerId" placeholder="CustomerId" required hidden />
+                                            <input asp-for="@matrxInfo[3]" type="text" name="curenttDate" placeholder="curenttDate" required hidden />
+                                            <button class="ds-free">@matrxInfo[0]</button>
+                                        </form>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td scope="col" scope="col">@matrix[row, col]</td>
+                                }
+
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }
+}

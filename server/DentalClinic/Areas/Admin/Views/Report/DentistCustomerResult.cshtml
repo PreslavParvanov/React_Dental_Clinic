@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ReportDoctorCustomerViewModel>
+@{
+    ViewData["Title"] = "Report Doctor Customer";
+}
+<h1 class="text-center">Report doctor customer</h1>
+<div class="report-criteria">
+    <p>Criteria:</p>
+    <p>        -> Dentist: @ViewBag.Doctor</p>
+    <p>        -> Date: @ViewBag.startDate - @ViewBag.endDate</p>
+</div>
+<hr />
+<div class="text-right">
+    <a asp-area="Admin" asp-controller="Report" asp-action="DentistCustomer">Back</a>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <div class="no-data">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Doctor name</th>
+                    <th scope="col">Day of week</th>
+                    <th scope="col">Date and time</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Customer Email</th>
+                    <th scope="col">Customer Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center" COLSPAN=4>No data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Doctor name</th>
+                <th scope="col">Day of week</th>
+                <th scope="col">Date and time</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer Email</th>
+                <th scope="col">Customer Phone</th>
+            </tr>
+        </thead>
+        @{
+            foreach (var ds in Model)
+            {
+                <tr>
+                    <td scope="col">@ds.DoctorName</td>
+                    <td scope="col">@ds.DateTimeSchedule.DayOfWeek</td>
+                    <td scope="col">@ds.DateTimeSchedule</td>
+                    <td scope="col">@ds.CustomerName</td>
+                    <td scope="col">@ds.CustomerEmail</td>
+                    <td scope="col">@ds.CustomerPhone</td>
+                </tr>
+            }
+        }
+    </table>
+}
+<hr />
+<div class="report-info">
+    <p>Report date: @DateTime.Now</p>
+    <p>Prepare: @ViewBag.reportUserName</p>
+</div>

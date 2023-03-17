@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ReportDoctorScheduleViewModel>
+@{
+    ViewData["Title"] = "Report Doctor Schedule";
+}
+<h1 class="report-criteria">Report doctor schedule</h1>
+<div class="text-left">
+    <p>Criteria:</p>
+    <p>        -> Dentist: @ViewBag.Doctor</p>
+    <p>        -> Date: @ViewBag.startDate - @ViewBag.endDate</p>
+</div>
+<hr />
+<div class="text-right">
+    <a asp-area="Admin" asp-controller="Report" asp-action="DentistSchedule">Back</a>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <div class="no-data">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Doctor name</th>
+                    <th scope="col">Day of week</th>
+                    <th scope="col">Date and time</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center" COLSPAN=4>No data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Doctor name</th>
+                <th scope="col">Day of week</th>
+                <th scope="col">Schedule date and time</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        @{
+            foreach (var ds in Model)
+            {
+                <tr>
+                    <td scope="col">@ds.DoctorName</td>
+                    <td scope="col">@ds.DayOfWeek</td>
+                    <td scope="col">@ds.ScheduleDateTime</td>
+                    @{
+                        if (@ds.IsBusy)
+                        {
+                            <td scope="col">Busy</td>
+                        }
+                        else
+                        {
+                            <td scope="col">Free</td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    </table>
+}
+<hr />
+<div class="report-info">
+    <p>Report date: @DateTime.Now</p>
+    <p>Prepare: @ViewBag.reportUserName</p>
+</div>

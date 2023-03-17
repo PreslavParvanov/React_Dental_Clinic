@@ -1,0 +1,59 @@
+﻿@model DoctorScheduleViewModel
+@{
+    ViewData["Title"] = "Create Dentist Schedule";
+}
+
+<form class="create-dentist-schedule-form" method="post">
+    <p class="container h-100 d-flex justify-content-center">@ViewBag.info</p>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-field">
+        <select asp-for="@Model.DoctorId" class="form-control">
+            @foreach (var doctor in Model.Doctors)
+            {
+                <option value="@doctor.Id">@doctor.Name</option>
+            }
+        </select>
+    </div>
+    <div class="create-dentist-schedule-field">
+        <input asp-for="@Model.startDate" type="date" id="startDate" name="startDate">
+    </div>
+    <span asp-validation-for="@Model.startDate" class="small text-danger"></span>
+    <div class="create-dentist-schedule-field">
+        <input asp-for="@Model.endDate" type="date" id="endDate" name="endDate">
+    </div>
+    <span asp-validation-for="@Model.endDate" class="small text-danger"></span>
+   
+    @{
+        List<TimeSpan> timeSpans = new List<TimeSpan>()
+    {
+    new TimeSpan(10,00,00), new TimeSpan(10,30,00),
+    new TimeSpan(11,00,00), new TimeSpan(11,30,00), 
+    new TimeSpan(12,00,00), new TimeSpan(12,30,00),
+    new TimeSpan(13,00,00), new TimeSpan(13,30,00), 
+    new TimeSpan(14,00,00), new TimeSpan(14,30,00),
+    new TimeSpan(15,00,00), new TimeSpan(15,30,00), 
+    new TimeSpan(16,00,00), new TimeSpan(16,30,00),
+    new TimeSpan(17,00,00), new TimeSpan(17,30,00), 
+    new TimeSpan(18,00,00), new TimeSpan(18,30,00),
+    new TimeSpan(19,00,00)
+    };
+        <div class="create-dentist-schedule-fieled">
+            <label>Work time</label>
+                <select name="startTime" class="start-time">
+                    @foreach (var time in timeSpans)
+                {
+                        <option value="@time">@time.ToString(@"hh\:mm")</option>
+                }
+                </select>
+                <select name="endTime" class="end-time">
+                    @foreach (var time in timeSpans)
+                {
+                        <option value="@time">@time.ToString(@"hh\:mm")</option>
+                }
+                </select>
+            </div>
+    }
+    <div class="create-dentist-schedule">
+        <button class="usr-btn" type="submit">Save</button>
+    </div>
+</form>

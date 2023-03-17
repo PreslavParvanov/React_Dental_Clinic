@@ -1,0 +1,51 @@
+﻿@using System.Globalization
+
+@model IEnumerable<DoctorScheduleViewModel>
+@{
+    ViewData["Title"] = "Booked";
+}
+<h1 class="text-center" name="Title">@ViewBag.TitlePage</h1>
+<p class="text-center">@ViewBag.Message</p>
+    <table class="tbl-team">
+
+        @{
+            DateTime dateTime = DateTime.Now;
+            foreach (var ds in Model)
+            {
+                if (ds.startDate.Date != dateTime)
+                {
+                <tr class="booked-tr">
+                        @{
+                        //
+                        <td scope="col">@ds.startDate.ToString("dd.MM.yyyy") @ds.startDate.DayOfWeek </td>
+                            dateTime = ds.startDate.Date;
+
+                            foreach (var date in Model.Where(x => x.startDate.Date == dateTime))
+                            {
+                                <td class="col">
+                                <form method="post">
+                                    <input asp-for="@date.DoctorId" type="text" name="DoctorId" placeholder="DoctorId" required hidden />
+                                    <input asp-for="@date.Doctors" type="text" name="Doctors" placeholder="Doctors" required hidden />
+                                    <input asp-for="@date.startDate" type="text" name="startDate" placeholder="startDate" required hidden />
+                                    @{
+                                        if (@date.IsBusy == true)
+                                        {
+                                            <button class="ds-booked" disabled>@date.startDate.ToString("HH:mm")</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="ds-free">@date.startDate.ToString("HH:mm")</button>
+                                        }
+                                    }
+                                </form>
+                                </td>
+                            }
+                        }
+                    </tr>
+
+                }
+
+            }
+        }
+
+    </table>

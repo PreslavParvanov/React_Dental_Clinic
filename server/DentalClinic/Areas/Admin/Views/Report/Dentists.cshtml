@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ReportDoctorViewModel>
+@{
+    ViewData["Title"] = "Report Dentists";
+}
+<h1 class="text-center">Report Dentists</h1>
+<div class="report-criteria">
+    <p>Criteria:</p>
+    <p>        -> Dentist: @ViewBag.Doctor</p>
+</div>
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Qualification</th>
+            <th scope="col">More Information</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var d in Model)
+        {
+            <tr>
+                <td scope="col">@d.Name</td>
+                <td scope="col">@d.Qualification</td>
+                <td scope="col">@d.MoreInfo</td>
+                @{
+                    if (@d.IsActive == 1)
+                    {
+                        <td scope="col">Active</td>
+                    }
+                    else
+                    {
+                        <td scope="col">Inactive</td>
+                    }
+                }
+            </tr>
+        }
+    }
+</table>
+<hr />
+<div class="report-info">
+    <p>Report date: @DateTime.Now</p>
+    <p>Prepare: @ViewBag.reportUserName</p>
+</div>

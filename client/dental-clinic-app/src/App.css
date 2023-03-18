@@ -674,3 +674,15 @@ body {
   color: #4A4A4A;
   text-indent: 40px;
 }
+
+
+/*Reports*/
+
+.Reports{
+  margin-left:250px;
+  margin-right: 250px;
+}
+
+.report-criteria{
+  margin-left: 30px;
+}

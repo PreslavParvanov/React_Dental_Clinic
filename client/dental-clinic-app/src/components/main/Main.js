@@ -10,6 +10,8 @@ import * as DoctorService from '../../services/DoctorService';
 
 import { Home } from "./Home";
 import { Team } from './Teams/Team';
+import { Reports } from './Reports/Reports';
+import { ReportDentists } from './Reports/ReportDentists';
 
 
 export const Main = () => {
@@ -36,6 +38,8 @@ export const Main = () => {
                 <Route path={routeAddresses.home} element={<Home />}></Route>
                 <Route path={routeAddresses.dentalServices} element={<DentalServices dentServices={dentServices}/>}></Route>
                 <Route path={routeAddresses.team} element={<Team dentists={dentists}/>}></Route>
+                <Route path={routeAddresses.reports} element={<Reports />}></Route>
+                <Route path={routeAddresses.reportDentists} element={<ReportDentists />}></Route>
             </Routes>
             
         </main>

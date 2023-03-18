@@ -21,6 +21,9 @@ export const Navigation = () => {
                         <li b-j3bformqou="" className="nav-item">
                             <Link className="nav-link text-dark" to="/Team">Team</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link text-dark" to={routeAddresses.reports}>Reports</Link>
+                        </li>
                         <li b-j3bformqou="" className="nav-item">
                             <Link className="nav-link text-dark" to="/Users/Login">Login</Link>
                         </li>

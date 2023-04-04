@@ -1,4 +1,5 @@
 ﻿using CloudinaryDotNet.Actions;
+using DentalClinic.Api.Models;
 using DentalClinic.BL.Contracts;
 using DentalClinic.BL.Models;
 using DentalClinic.DB.Data.Models;
@@ -39,16 +40,16 @@ namespace DentalClinic.Api.Controllers
 
         [HttpPost(Name = "Booked")]
         [Produces("application/json")]
-        public async Task<IActionResult> Booked(Guid doctorId,DateTime dateBooked,string user, string customerName, string customerEmail, string customerPhone)
+        public async Task<IActionResult> Booked(BookedModel bookedModel)
         {
             DoctorScheduleViewModel doctorScheduleViewModel = new DoctorScheduleViewModel();
-            doctorScheduleViewModel.DoctorId = doctorId;
-            doctorScheduleViewModel.startDate = dateBooked;
-            doctorScheduleViewModel.Who=user;
+            doctorScheduleViewModel.DoctorId = bookedModel.DoctorId;
+            doctorScheduleViewModel.startDate = bookedModel.DateBooked;
+            doctorScheduleViewModel.Who= bookedModel.User;
             try
             {
-                var schadule = await doctorService.GetDoctorSchedule(doctorId, dateBooked, dateBooked);
-                await doctorService.Booked(doctorScheduleViewModel, customerName, customerEmail, customerPhone);
+                var schadule = await doctorService.GetDoctorSchedule(bookedModel.DoctorId, bookedModel.DateBooked, bookedModel.DateBooked);
+                await doctorService.Booked(doctorScheduleViewModel, bookedModel.CustomerName, bookedModel.CustomerEmail, bookedModel.CustomerPhone);
             }
             catch (Exception ex)
             {

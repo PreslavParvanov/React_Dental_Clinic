@@ -1,10 +1,10 @@
 
-//import {useEffect, useState} from 'react';
+
 
 import './lib/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-//import * as dentalServicesService from './services/DentalServicesService';
+
 //import * as doctorService from './services/DoctorService';
 //import * as bookedService from './services/BookedService';
 

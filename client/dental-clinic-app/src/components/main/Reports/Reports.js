@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { routeAddresses } from '../../../Router';
 
 export const Reports = () => {
+
     return (
         <div className="Reports">
             <div className="alert alert-secondary" role="alert">

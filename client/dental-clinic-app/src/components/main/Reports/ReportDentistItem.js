@@ -1,17 +1,14 @@
 export const ReportDentistItem = (
-    Name,
-    Qualification,
-    MoreInfo
+    reportDoctors
 ) => {
     return (
         <>
             <tr>
-                <td scope="col">{Name}</td>
-                <td scope="col">{Qualification}</td>
-                <td scope="col">{MoreInfo}</td>
+                <td scope="col">{reportDoctors.Name}</td>
+                <td scope="col">{reportDoctors.Qualification}</td>
+                <td scope="col">{reportDoctors.MoreInfo}</td>
                 <td scope="col">Active</td>
             </tr>
-
         </>
     )
 }

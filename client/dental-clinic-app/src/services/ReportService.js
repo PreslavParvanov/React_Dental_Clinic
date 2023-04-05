@@ -6,3 +6,11 @@ export const getReportDoctors = async () =>{
     const result = await response.json();
     return result ;
 };
+
+
+export const getReportDoctorSchedule = async(doctorId,startDate, endDate) =>{
+    const url = `${baseUrl}/GetDoctorSchedule?doctorId=${doctorId}&startDate=${startDate}&endDate=${endDate}`;
+    const response = await fetch(url);
+    const result = await response.json();
+    return result ;
+}

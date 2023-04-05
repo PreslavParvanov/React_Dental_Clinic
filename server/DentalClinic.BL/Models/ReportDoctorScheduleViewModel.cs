@@ -5,6 +5,7 @@ namespace DentalClinic.BL.Models
 {
     public class ReportDoctorScheduleViewModel
     {
+        public Guid Id { get; set; }
         public string DoctorName { get; set; } = null!;
         public DateTime ScheduleDateTime { get; set; }
         public string DayOfWeek { get; set; } = null!;

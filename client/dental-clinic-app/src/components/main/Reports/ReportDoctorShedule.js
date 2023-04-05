@@ -13,9 +13,7 @@ const ReportFormKeys = {
 export const ReportDoctorShedule = (
     inputData
 ) => {
-    console.log(inputData);
     const { values, changeHandler, onSubmit } = useForm({
-        [ReportFormKeys.DoctorId]: '',
         [ReportFormKeys.StartDate]: '',
         [ReportFormKeys.EndDate]: '',
     }, inputData.onGetReportSubmit);
@@ -23,9 +21,9 @@ export const ReportDoctorShedule = (
     return (
         <>
             <h1 className="text-center">Report doctor schedule</h1>
-            <form className="doctor-scedul-form" method="post" onSubmit={onSubmit}>
+            <form className="doctor-scedul-form" method="get" onSubmit={onSubmit}>
                 <div className="doctor-scedul-field">
-                    <select className="form-control" onChange={changeHandler} value={values[ReportFormKeys.DoctorId]}>
+                    <select id='selectedDoctor' className="form-control" >
                         {doctors.map(x => <DoctorSelectOprion key={x.id} Name={x.name} Id={x.id} />)}
                     </select>
                 </div>

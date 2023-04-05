@@ -1,6 +1,10 @@
-﻿using DentalClinic.BL.Contracts;
+﻿using DentalClinic.Api.Models;
+using DentalClinic.BL.Contracts;
 using DentalClinic.BL.Models;
+using DentalClinic.BL.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace DentalClinic.Api.Controllers
 {
@@ -9,18 +13,13 @@ namespace DentalClinic.Api.Controllers
     public class ReportController : ControllerBase
     {
         private readonly IDoctorService doctorService;
-        /// <summary>
-        /// DoctorService
-        /// </summary>
-        /// <param name="_doctorService"></param>
-        public ReportController(IDoctorService _doctorService)
+        private readonly IReportService reportService;
+        public ReportController(IDoctorService _doctorService, IReportService _reportService)
         {
             doctorService = _doctorService;
+            reportService = _reportService;
         }
-        /// <summary>
-        /// Get All doctors
-        /// </summary>
-        /// <returns></returns>
+
         [HttpGet(Name = "ReportDoctors")]
         [Produces("application/json")]
         [ProducesResponseType(200, StatusCode = StatusCodes.Status200OK, Type = typeof(IEnumerable<GetDoctorViewModel>))]
@@ -32,6 +31,26 @@ namespace DentalClinic.Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
             return Ok(teams);
+        }
+
+
+        [HttpGet(Name = "GetDoctorSchedule")]
+        [Produces("application/json")]
+        [ProducesResponseType(200, StatusCode = StatusCodes.Status200OK, Type = typeof(IEnumerable<ReportDoctorScheduleViewModel>))]
+        public async Task<IActionResult> GetDoctorSchedule(Guid DoctorId, DateTime StartDate, DateTime EndDate)
+        {
+            IEnumerable<ReportDoctorScheduleViewModel> result = null;
+            try
+            {
+                result = await reportService.GetDentistScheduleByDate(DoctorId, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            
+            return Ok(result);
         }
     }
 }

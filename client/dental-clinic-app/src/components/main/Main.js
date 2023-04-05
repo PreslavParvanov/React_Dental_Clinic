@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 import {useEffect, useState} from 'react';
 
@@ -6,7 +6,7 @@ import { routeAddresses } from '../../Router';
 import { DentalServices } from './DentalServices/DentalServices';
 
 import * as dentalServicesService from '../../services/DentalServicesService';
-import * as getReportDoctors from '../../services/ReportService';
+import * as ReportService from '../../services/ReportService';
 import * as DoctorService from '../../services/DoctorService';
 
 import { Home } from "./Home";
@@ -14,12 +14,13 @@ import { Team } from './Teams/Team';
 import { Reports } from './Reports/Reports';
 import { ReportDentists } from './Reports/ReportDentists';
 import { ReportDoctorShedule } from './Reports/ReportDoctorShedule';
-
+import { ReportDoctorSchaduleResult } from './Reports/ReportDoctorSchaduleResult';
 
 export const Main = () => {
-
+    const navigate = useNavigate();
     const [dentServices, setDentServices] = useState([]);
     const [reportDoctors, setreportDoctors] = useState([]);
+    const [reportDoctorSchedole, setreportDoctorSchedole] = useState([]);
     const [dentists, setDentists] = useState([]);
 
     useEffect(()=>{
@@ -30,7 +31,7 @@ export const Main = () => {
     },[]);
 
     useEffect(() => {
-        getReportDoctors.getReportDoctors()
+        ReportService.getReportDoctors()
             .then(result => {
                 setreportDoctors(result);
             })
@@ -44,12 +45,21 @@ export const Main = () => {
     },[]);
 
     const onGetReportSubmit = async (data) => {
+        var e = document.getElementById("selectedDoctor").value;
         console.log(data);
-        //const newGame = await gameService.create(data);
-
-        //setGames(state => [...state, newGame]);
-
-        //navigate('/catalog');
+        var result = {};
+            ReportService.getReportDoctorSchedule(e,data.startDate,data.endDate)
+                .then(r => {
+                    result=r;
+                    setreportDoctorSchedole(result);
+                    if(r.length>0){
+                        navigate(routeAddresses.reportDentistScheduleResult);
+                    }else{
+                        alert("no data");
+                    }
+                })
+        
+        
     };
 
     return (
@@ -61,6 +71,7 @@ export const Main = () => {
                 <Route path={routeAddresses.reports} element={<Reports />}></Route>
                 <Route path={routeAddresses.reportDentists} element={<ReportDentists reportDoctors={reportDoctors}/>}></Route>
                 <Route path={routeAddresses.reportDentistSchedule} element={<ReportDoctorShedule reportDoctors={reportDoctors} onGetReportSubmit={onGetReportSubmit}/>}></Route>
+                <Route path={routeAddresses.reportDentistScheduleResult} element={<ReportDoctorSchaduleResult reportDoctorSchedole={reportDoctorSchedole} />}></Route>
             </Routes>
             
         </main>

@@ -4,5 +4,6 @@ export const routeAddresses = {
     'team': '/Team',
     'reports': '/Reports',
     'reportDentists': '/Reports/Dentists',
-    'reportDentistSchedule': '/Reports/DentistSchedule'
+    'reportDentistSchedule': '/Reports/DentistSchedule',
+    'reportDentistScheduleResult': '/Reports/DentistSchedule/Result'
 }

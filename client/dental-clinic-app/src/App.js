@@ -7,6 +7,7 @@ import './App.css';
 
 //import * as doctorService from './services/DoctorService';
 //import * as bookedService from './services/BookedService';
+import * as reportService from './services/ReportService';
 
 import { Footer } from './components/footer/Footer';
 import { Header } from './components/header/Header';
@@ -21,7 +22,8 @@ function App() {
   //doctorService.getDoctorById('8867f1f2-ebda-4703-b187-bd268568690e');
   //bookedService.getDentistSchedule('8867f1f2-ebda-4703-b187-bd268568690e','03.06.2023','03.12.2023');
   //bookedService.Booked('8867f1f2-ebda-4703-b187-bd268568690e','03.11.2023 17:00:00','f86bbf07-2f0b-4e1a-8049-72eaf3e16775','dim','dim@abv.bg','088');
-
+  var result = reportService.getReportDoctorSchedule('8867F1F2-EBDA-4703-B187-BD268568690E','03-10-2023','03-11-2023');
+  console.log(result);
   
 
   /*useEffect(()=>{

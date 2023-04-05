@@ -56,6 +56,7 @@ namespace DentalClinic.BL.Service
                 .Where(ds => ds.DoctorId==DoctorId && ds.ScheduleDateTime>= startDate && ds.ScheduleDateTime <= endDate)
                 .Select(ds => new ReportDoctorScheduleViewModel()
                 {
+                    Id = ds.DoctorId,
                     DoctorName = ds.Doctors.Name,
                     DayOfWeek = ds.ScheduleDateTime.DayOfWeek.ToString(),
                     ScheduleDateTime = ds.ScheduleDateTime,

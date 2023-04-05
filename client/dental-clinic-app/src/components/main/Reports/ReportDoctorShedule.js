@@ -30,7 +30,7 @@ export const ReportDoctorShedule = (
                 <div className="doctor-scedul-field">
                     <input 
                         type="datetime-local" 
-                        id="startDate" 
+                        id={ReportFormKeys.StartDate} 
                         name={ReportFormKeys.StartDate} 
                         value={values[ReportFormKeys.StartDate]}
                         onChange={changeHandler}
@@ -40,7 +40,7 @@ export const ReportDoctorShedule = (
                 <div className="doctor-scedul-field">
                     <input 
                         type="datetime-local" 
-                        id="endDate" 
+                        id={ReportFormKeys.EndDate} 
                         name={ReportFormKeys.EndDate} 
                         value={values[ReportFormKeys.EndDate]}
                         onChange={changeHandler}

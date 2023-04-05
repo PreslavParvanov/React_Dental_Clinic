@@ -1,22 +1,17 @@
+import { DentistItem } from './DentistItem';
+
 export const Team = (
-    dentists
+    inputData
 ) => {
-    console.log(Object.values(dentists)[0]);
     return (
         <>
             <h1 className="text-center">Teams</h1>
             <table className="tbl-team">
                 <tbody>
-
+                    {inputData.dentists.map(x => <DentistItem key={x.id} id={x.id} Name={x.name} Qualification={x.qualification} ImageUrl={x.imageUrl} MoreInfo={x.moreInfo} onBookedSubmit={inputData.onBookedSubmit} />)}
                 </tbody>
             </table>
         </>
     );
 }
 
-/*@{
-    foreach (var doctor in Model)
-    {
-        
-    }
-}*/

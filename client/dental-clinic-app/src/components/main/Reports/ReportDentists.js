@@ -1,11 +1,11 @@
 import { ReportDentistItem } from './ReportDentistItem';
+import * as DateConvertor from '../../../utils/ConvertDate';
 
 
 export const ReportDentists = (
     reportDoctors
 ) => {
-    var m = new Date();
-    var dateString = m.getDate()+"."+ (m.getMonth()+1) +"."+ m.getFullYear() + " " + m.getHours() + ":" + m.getMinutes() + ":" + m.getSeconds();
+    var d = new Date();
     return (
         <>
             <h1 className="text-center">Report Dentists</h1>
@@ -24,12 +24,12 @@ export const ReportDentists = (
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.values(reportDoctors)[0].map(x => <ReportDentistItem key={x.id} Name={x.name} Qualification={x.qualification} MoreInfo={x.moreInfo} />)}
+                {Object.values(reportDoctors)[0].map(x => <ReportDentistItem key={x.id} Name={x.name} Qualification={x.qualification} MoreInfo={x.moreInfo} />)}
                 </tbody>
             </table>
             <hr />
             <div className="report-info">
-                <p className="report-criteria">Report date: {dateString}</p>
+                <p className="report-criteria">Report date: {DateConvertor.ConvertDateTime_DDMMYYYY_HHMISS(d)}</p>
                 <p className="report-criteria">Prepare: @ViewBag.reportUserName</p>
             </div>
         </>

@@ -1,12 +1,20 @@
 const baseUrl = 'https://localhost:7187/Booked';
 
 export const getDentistSchedule = async(doctorId, startDate, endDate) =>{
-    const url = `${baseUrl}/GetDentistSchedule?doctorId=${doctorId}&dateStart=${startDate}&endDate=${endDate}`;
-    console.log(url);
-    const response = await fetch(url);
-    const result = await response.json();
-    console.log('getDentistSchedule');
-    console.log(result);
+    const url = `${baseUrl}/GetDentistSchedule`;
+
+    const result = fetch(`${url}`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            doctorId,
+            startDate,
+            endDate
+            }) 
+        })
+        .then(res => res.json());
     return result ;
 }
 

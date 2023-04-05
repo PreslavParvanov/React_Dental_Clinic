@@ -1,13 +1,10 @@
 import { ReportDoctorSchaduleResultItem } from './ReportDoctorSchaduleResultItem';
-
+import * as DateConvertor from '../../../utils/ConvertDate';
 
 export const ReportDoctorSchaduleResult = (
     reportDoctors
 ) => {
-    var m = new Date();
-    var dateString = m.getDate()+"."+ (m.getMonth()+1) +"."+ m.getFullYear() + " " + m.getHours() + ":" + m.getMinutes() + ":" + m.getSeconds();
-    //console.log(reportDoctors);
-    console.log(Object.values(reportDoctors)[0][0]);
+    var d = new Date();
     return (
         <>
             <h1 className="text-center">Report doctor schedule</h1>
@@ -31,7 +28,7 @@ export const ReportDoctorSchaduleResult = (
             </table>
             <hr />
             <div className="report-info">
-                <p className="report-criteria">Report date: {dateString}</p>
+                <p className="report-criteria">Report date: {DateConvertor.ConvertDateTime_DDMMYYYY_HHMI(d)}</p>
                 <p className="report-criteria">Prepare: @ViewBag.reportUserName</p>
             </div>
         </>

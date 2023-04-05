@@ -20,17 +20,13 @@ namespace DentalClinic.Api.Controllers
         {
             doctorService = _doctorService;
         }
-        /// <summary>
-        /// Get Dental Service
-        /// </summary>
-        /// <returns></returns>
 
-        [HttpGet(Name = "GetDentistSchedule")]
+        [HttpPost(Name = "GetDentistSchedule")]
         [Produces("application/json")]
-        [ProducesResponseType(200, StatusCode = StatusCodes.Status200OK, Type = typeof(IEnumerable<DoctorScheduleViewModel>))]
-        public async Task<IActionResult> GetDentistSchedule(Guid doctorId, DateTime dateStart, DateTime dateEnd)
+        public async Task<IActionResult> GetDentistSchedule(BookedByDateModel bookedbyDateModel)
         {
-            var schadule = await doctorService.GetDoctorSchedule(doctorId, dateStart, dateEnd);
+            var schadule = await doctorService.GetDoctorSchedule(bookedbyDateModel.DoctorId, bookedbyDateModel.StartDate, bookedbyDateModel.EndDate);
+            
             if (schadule == null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);

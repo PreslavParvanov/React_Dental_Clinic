@@ -49,6 +49,15 @@ export const ConvertDateTime_YYYYMMDD_HHMISS = (date) => {
     return dateString;
 };
 
+export const ConvertDateTime_HHMI = (date) => {
+
+    var hh = getHourString(date);
+    var mi = getMinuteString(date);
+
+    var dateString = hh + ":" + mi;
+    return dateString;
+};
+
 
 export const ConvertDateTime_DDMMYYYY = (date) => {
     var dd = getDayString(date);

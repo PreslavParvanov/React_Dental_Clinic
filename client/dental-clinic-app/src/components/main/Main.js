@@ -17,12 +17,14 @@ import { Reports } from './Reports/Reports';
 import { ReportDentists } from './Reports/ReportDentists';
 import { ReportDoctorShedule } from './Reports/ReportDoctorShedule';
 import { ReportDoctorSchaduleResult } from './Reports/ReportDoctorSchaduleResult';
+import { Booked } from './Booked/Booked';
 
 export const Main = () => {
     const navigate = useNavigate();
     const [dentServices, setDentServices] = useState([]);
     const [reportDoctors, setreportDoctors] = useState([]);
     const [reportDoctorSchedole, setreportDoctorSchedole] = useState([]);
+    const [booked, setBooked] = useState([]);
     const [dentists, setDentists] = useState([]);
 
     useEffect(() => {
@@ -69,8 +71,9 @@ export const Main = () => {
         console.log(data);
         BookedService.getDentistSchedule(data.doctor,data.startDate,data.endDate)
         .then(r => {
-            console.log(r);
-            //TO DO Booked
+            r.doctor=data.doctorName;
+            setBooked(r);
+            navigate(routeAddresses.booked);
         })
     };
 
@@ -80,6 +83,7 @@ export const Main = () => {
                 <Route path={routeAddresses.home} element={<Home />}></Route>
                 <Route path={routeAddresses.dentalServices} element={<DentalServices dentServices={dentServices} />}></Route>
                 <Route path={routeAddresses.team} element={<Team dentists={dentists} onBookedSubmit={onBookedSubmit} />}></Route>
+                <Route path={routeAddresses.booked} element={<Booked booked={booked} />}></Route>
                 <Route path={routeAddresses.reports} element={<Reports />}></Route>
                 <Route path={routeAddresses.reportDentists} element={<ReportDentists reportDoctors={reportDoctors} />}></Route>
                 <Route path={routeAddresses.reportDentistSchedule} element={<ReportDoctorShedule reportDoctors={reportDoctors} onGetReportSubmit={onGetReportSubmit} />}></Route>

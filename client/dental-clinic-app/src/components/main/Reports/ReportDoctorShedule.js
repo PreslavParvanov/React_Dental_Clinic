@@ -34,7 +34,7 @@ export const ReportDoctorShedule = (
                         name={ReportFormKeys.StartDate} 
                         value={values[ReportFormKeys.StartDate]}
                         onChange={changeHandler}
-                        />
+                    />
                 </div>
                 <div></div>
                 <div className="doctor-scedul-field">

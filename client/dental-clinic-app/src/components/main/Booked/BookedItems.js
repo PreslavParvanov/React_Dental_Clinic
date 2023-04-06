@@ -16,9 +16,8 @@ export const BookedItems = (
         <>
             <tr className="booked-tr">
             <td scope="col">{inputData.date}</td>
-            {dataInfo.map(x => <BookedItem key={Math.random()} data={x} />)} 
+            {dataInfo.map(x => <BookedItem key={Math.random()} data={x} onGetBookedSubmit={inputData.Info.onGetBookedSubmit} user={inputData.Info.user} />)} 
             </tr>
-
         </>
     );
 }

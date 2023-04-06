@@ -11,18 +11,10 @@ namespace DentalClinic.Api.Controllers
     public class DentalServiceController : ControllerBase
     {
         private readonly IDentalService dentalService;
-        /// <summary>
-        /// DoctorService
-        /// </summary>
-        /// <param name="_dentalService"></param>
         public DentalServiceController(IDentalService _dentalService)
         {
             dentalService = _dentalService;
         }
-        /// <summary>
-        /// Get Dental Service
-        /// </summary>
-        /// <returns></returns>
         
         [HttpGet(Name = "GetDentalService")]
         [Produces("application/json")]

@@ -521,6 +521,27 @@ body {
   white-space: nowrap;
 }
 
+.ds-booked-my {
+  background-color: #cef9d3;
+}
+
+.legend {
+  border: 1px solid black;
+  margin-left: 140px;
+  width: 240px;
+}
+
+.legend-title {
+  margin-left: 145px;
+  margin-top: 35px;
+}
+
+.legend-label {
+  margin-left: 20px;
+  margin-top: 10px;
+  width: 130px;
+}
+
 /*--------Dental Service-----------*/
 .dental-service-h1 {
   margin: auto;
@@ -678,11 +699,11 @@ body {
 
 /*Reports*/
 
-.Reports{
-  margin-left:250px;
+.Reports {
+  margin-left: 250px;
   margin-right: 250px;
 }
 
-.report-criteria{
-  margin-left: 30px; 
+.report-criteria {
+  margin-left: 30px;
 }

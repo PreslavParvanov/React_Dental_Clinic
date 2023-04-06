@@ -1,21 +1,47 @@
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 import * as DateConvertor from '../../../utils/ConvertDate';
+
+import { useForm } from '../../../hooks/useForm';
+
+const BookedFormKeys = {
+    DoctorId: 'doctorId',
+    StartDate: 'startDate'
+};
 
 export const BookedItem = (
     inputData
 ) => {
     var date = new Date(inputData.data.startDate);
     var isBusy = inputData.data.isBusy;
+    var bookedUser = inputData.data.who;
+    const { values, changeHandler, onSubmit } = useForm({
+        [BookedFormKeys.DoctorId]: inputData.data.doctorId,
+        [BookedFormKeys.StartDate]: inputData.data.startDate,
+    }, inputData.onGetBookedSubmit);
     return (
         <>
             <td className="col">
-                <form method="post">
-                    <input asp-for="@date.DoctorId" type="text" name="DoctorId" placeholder="DoctorId" required hidden />
-                    <input asp-for="@date.Doctors" type="text" name="Doctors" placeholder="Doctors" required hidden />
-                    <input asp-for="@date.startDate" type="text" name="startDate" placeholder="startDate" required hidden />
-                    {isBusy ===true && (<button className="ds-booked" disabled >{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
+                <form method="post" onSubmit={onSubmit}>
+                    <input 
+                        type="text" 
+                        id={[BookedFormKeys.DoctorId]}
+                        name={[BookedFormKeys.DoctorId]}
+                        value={values[BookedFormKeys.DoctorId]}
+                        onChange={changeHandler}
+                        required 
+                        hidden 
+                    />
+                    <input 
+                        type="text" 
+                        id={[BookedFormKeys.StartDate]}
+                        name={[BookedFormKeys.StartDate]}
+                        value={values[BookedFormKeys.StartDate]}
+                        onChange={changeHandler}
+                        required 
+                        hidden 
+                    />
+                    {isBusy ===true && bookedUser!=inputData.user && (<button className="ds-booked"  disabled >{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
                     {isBusy ===false && (<button className="ds-booked" >{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
-                    
+                    {isBusy ===true && bookedUser===inputData.user &&(<button className="ds-booked-my">{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
                 </form>
             </td>
 

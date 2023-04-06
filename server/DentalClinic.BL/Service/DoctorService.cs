@@ -101,6 +101,7 @@ namespace DentalClinic.BL.Service
                     DoctorId = ds.DoctorId,
                     startDate = ds.ScheduleDateTime,
                     IsBusy = ds.IsBusy,
+                    Who = ds.Who,
                 })
                 .OrderBy(ds => ds.startDate)
                 .ToListAsync();

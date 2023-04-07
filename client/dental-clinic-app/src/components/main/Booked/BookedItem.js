@@ -41,7 +41,7 @@ export const BookedItem = (
                     />
                     {isBusy ===true && bookedUser!=inputData.user && (<button className="ds-booked"  disabled >{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
                     {isBusy ===false && (<button className="ds-booked" >{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
-                    {isBusy ===true && bookedUser===inputData.user &&(<button className="ds-booked-my">{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
+                    {isBusy ===true && bookedUser===inputData.user &&(<button className="ds-booked-my" disabled>{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
                 </form>
             </td>
 

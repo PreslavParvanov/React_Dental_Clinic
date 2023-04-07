@@ -6,11 +6,13 @@ using DentalClinic.DB.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Web.Http;
 
 namespace DentalClinic.Api.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("/[controller]/[action]")]
+    [Microsoft.AspNetCore.Mvc.Route("/[controller]/[action]")]
     public class BookedController : ControllerBase
     {
         private readonly IDoctorService doctorService;
@@ -21,7 +23,8 @@ namespace DentalClinic.Api.Controllers
             userManager = _userManager;
         }
 
-        [HttpPost(Name = "GetDentistSchedule")]
+        
+        [Microsoft.AspNetCore.Mvc.HttpPost(Name = "GetDentistSchedule")]
         [Produces("application/json")]
         public async Task<IActionResult> GetDentistSchedule(BookedByDateModel bookedbyDateModel)
         {
@@ -34,7 +37,7 @@ namespace DentalClinic.Api.Controllers
             return Ok(schadule);
         }
 
-        [HttpPost(Name = "Booked")]
+        [Microsoft.AspNetCore.Mvc.HttpPost(Name = "Booked")]
         [Produces("application/json")]
         public async Task<IActionResult> Booked(BookedModel bookedModel)
         {

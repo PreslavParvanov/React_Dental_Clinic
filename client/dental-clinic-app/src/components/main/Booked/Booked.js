@@ -27,7 +27,7 @@ export const Booked = (
                 </div>
                 <div>
                     <label className="legend-label">My reservation</label>
-                    <button className="ds-booked-my">00:00</button>
+                    <button className="ds-booked-my" disabled>00:00</button>
                 </div>
                 <div>
                     <label className="legend-label">Busy</label>

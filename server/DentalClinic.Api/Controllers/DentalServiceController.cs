@@ -2,12 +2,13 @@
 using DentalClinic.BL.Models;
 using DentalClinic.BL.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace DentalClinic.Api.Controllers
 {
     [ApiController]
-    [Route("/[controller]/[action]")]
+    [Microsoft.AspNetCore.Mvc.Route("/[controller]/[action]")]
     public class DentalServiceController : ControllerBase
     {
         private readonly IDentalService dentalService;
@@ -15,8 +16,8 @@ namespace DentalClinic.Api.Controllers
         {
             dentalService = _dentalService;
         }
-        
-        [HttpGet(Name = "GetDentalService")]
+
+        [Microsoft.AspNetCore.Mvc.HttpGet(Name = "GetDentalService")]
         [Produces("application/json")]
         [ProducesResponseType(200, StatusCode = StatusCodes.Status200OK, Type = typeof(IEnumerable<DentalServiceViewModel>))]
         public async Task<IActionResult> GetDentalService()

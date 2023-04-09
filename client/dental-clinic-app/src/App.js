@@ -55,6 +55,7 @@ function App() {
 
 const contextValues = {
   id: user.id,
+  accessToken: user.accessToken,
   isAuthenticated: !!user.accessToken
 };
 

@@ -162,11 +162,13 @@ export const Main = (
 
     const onEditDentistClick = async (e) => {
         var doctorId = e.target.parentNode.parentNode.childNodes[2].innerText;
+        
         DoctorService.getDoctorById(doctorId)
             .then(r => {
                 setDoctor(r);
+                navigate(`/Dentist/Edit/${doctorId}`);
             })
-        navigate(`/Dentist/Edit/${doctorId}`);
+        
     };
 
     const onCreateDentistSubmit = async (data) => {
@@ -179,9 +181,8 @@ export const Main = (
                     DoctorService.getAllDoctors()
                         .then(result => {
                             setDentists(result);
+                            navigate(routeAddresses.dentists);
                         });
-
-                    navigate(routeAddresses.dentists);
                 } else if (r.status == 400) {
                     r.json()
                         .then(e => {

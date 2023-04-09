@@ -10,6 +10,7 @@ const EditDentistFormKeys = {
 export const EditDentist = (
     inputData
 ) => {
+    console.log(inputData.doctor);
     console.log(inputData.doctor[0]);
     console.log(inputData.doctor[0].name);
     const { values, changeHandler, onSubmit } = useForm({

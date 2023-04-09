@@ -32,6 +32,5 @@ export const Booked = async (doctorId, dateBooked, user) => {
             user
         })
     })
-        //.then(res => res.json());
     return result;
 }

@@ -21,19 +21,6 @@ export const getDentistSchedule = async (doctorId, startDate, endDate) => {
 export const Booked = async (doctorId, dateBooked, user) => {
     const url = `${baseUrl}/Booked`;
 
-    // const result = fetch(`${url}`, {
-    //     method: 'POST',
-    //     headers: {
-    //         'content-type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         doctorId,
-    //         dateBooked,
-    //         user
-    //     })
-    // })
-    //     .then(res => res.json());
-
     const result = fetch(`${url}`, {
         method: 'POST',
         headers: {

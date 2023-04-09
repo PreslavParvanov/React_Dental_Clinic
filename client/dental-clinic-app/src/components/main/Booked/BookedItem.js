@@ -44,19 +44,6 @@ export const BookedItem = (
                     {isBusy ===true && bookedUser===inputData.user &&(<button className="ds-booked-my" disabled>{DateConvertor.ConvertDateTime_HHMI(date)}</button>)}
                 </form>
             </td>
-
-            {//                 if (@date.IsBusy == true)
-                //             {
-                //                 
-                //             }
-                //             else
-                //             {
-                //                 <button className="ds-free">@date.startDate.ToString("HH:mm")</button>
-                //             }
-                //             }
-                //        
-            }
-
         </>
     );
 }

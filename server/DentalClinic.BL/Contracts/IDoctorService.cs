@@ -12,5 +12,8 @@ namespace DentalClinic.BL.Contracts
         Task Booked(DoctorScheduleViewModel doctorScheduleViewModel, string customerName, string customerEmail, string customerPhone);
         Task<IEnumerable<Doctor>> GetDoctorsAsync();
         Task CreateSchedule(DoctorScheduleViewModel doctorScheduleViewModel, TimeSpan startTime, TimeSpan endTime);
+        Task Delete(Guid id, string who);
+
+        Task Update(DoctorViewModel doctorViewModel);
     }
 }

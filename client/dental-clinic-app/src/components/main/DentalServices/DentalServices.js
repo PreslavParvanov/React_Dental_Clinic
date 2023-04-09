@@ -15,12 +15,3 @@ export const DentalServices = (
         </>
     );
 }
-
-
-
-/*@{
-    foreach(var dentalService in Model)
-        {
-    
-}
-    }*/

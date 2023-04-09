@@ -26,6 +26,32 @@ export const ConvertDateTime_AddDays_YYYYMMDD_HHMISS = (date, days) => {
     return dateString;
 };
 
+export const ConvertDateTime_AddDays_YYYYMMDD_HHMI = (date, days) => {
+    date.setDate(date.getDate() + days);
+    var dd = getDayString(date);
+    var mm = getMonthString(date);
+    var yyyy = date.getFullYear().toString();
+    var hh = getHourString(date);
+    var mi = getMinuteString(date);
+
+    var dateString = yyyy + "-" + mm + "-" + dd + "T" + hh + ":" + mi;
+
+
+    return dateString;
+};
+
+export const ConvertDateTime_AddDays_YYYYMMDD = (date, days) => {
+    date.setDate(date.getDate() + days);
+    var dd = getDayString(date);
+    var mm = getMonthString(date);
+    var yyyy = date.getFullYear().toString();
+
+    var dateString = yyyy + "-" + mm + "-" + dd;
+
+
+    return dateString;
+};
+
 export const ConvertDateTime_DDMMYYYY_HHMI = (date) => {
     var dd = getDayString(date);
     var mm = getMonthString(date);
@@ -46,6 +72,26 @@ export const ConvertDateTime_YYYYMMDD_HHMISS = (date) => {
     var ss = getSecondString(date);
 
     var dateString = yyyy + "-" + mm + "-" + dd + "T" + hh + ":" + mi + ":" + ss;
+    return dateString;
+};
+
+export const ConvertDateTime_YYYYMMDD_HHMI = (date) => {
+    var dd = getDayString(date);
+    var mm = getMonthString(date);
+    var yyyy = date.getFullYear().toString();
+    var hh = getHourString(date);
+    var mi = getMinuteString(date);
+
+    var dateString = yyyy + "-" + mm + "-" + dd + "T" + hh + ":" + mi;
+    return dateString;
+};
+
+export const ConvertDateTime_YYYYMMDD= (date) => {
+    var dd = getDayString(date);
+    var mm = getMonthString(date);
+    var yyyy = date.getFullYear().toString();
+
+    var dateString = yyyy + "-" + mm + "-" + dd ;
     return dateString;
 };
 

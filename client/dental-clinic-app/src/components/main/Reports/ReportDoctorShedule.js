@@ -1,4 +1,5 @@
 import { DoctorSelectOprion } from './DoctorSelectOption';
+import * as DateConvertor from '../../../utils/ConvertDate'; 
 import { useForm } from '../../../hooks/useForm';
 
 
@@ -13,9 +14,10 @@ const ReportFormKeys = {
 export const ReportDoctorShedule = (
     inputData
 ) => {
+    var d = new Date();
     const { values, changeHandler, onSubmit } = useForm({
-        [ReportFormKeys.StartDate]: '',
-        [ReportFormKeys.EndDate]: '',
+        [ReportFormKeys.StartDate]: DateConvertor.ConvertDateTime_YYYYMMDD_HHMI(d),
+        [ReportFormKeys.EndDate]: DateConvertor.ConvertDateTime_AddDays_YYYYMMDD_HHMI(d,5),
     }, inputData.onGetReportSubmit);
     var doctors = inputData.reportDoctors;
     return (

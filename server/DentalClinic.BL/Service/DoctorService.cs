@@ -62,6 +62,43 @@ namespace DentalClinic.BL.Service
             await repo.SaveChangesAsync();
         }
 
+        public async Task Delete(Guid id, string who)
+        {
+            var result = await repo.AllReadonly<Doctor>()
+            .Where(ds => ds.Id == id)
+            .FirstOrDefaultAsync();
+
+
+            if (result != null)
+            {
+                result.Who = who;
+                result.IsActive = 0;
+                result.When = DateTime.Now;
+                repo.Update(result);
+                //await repo.AddAsync(result);
+                await repo.SaveChangesAsync();
+            }
+        }
+
+        public async Task Update(DoctorViewModel doctorViewModel)
+        {
+            var result = await repo.AllReadonly<Doctor>()
+            .Where(ds => ds.Id == doctorViewModel.Id)
+            .FirstOrDefaultAsync();
+
+
+            if (result != null)
+            {
+                result.Name = doctorViewModel.Name;
+                result.Qualification = doctorViewModel.Qualification;
+                result.MoreInfo = doctorViewModel.MoreInfo;
+                result.Who = doctorViewModel.Who;
+                result.When = DateTime.Now;
+                repo.Update(result);
+                await repo.SaveChangesAsync();
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>

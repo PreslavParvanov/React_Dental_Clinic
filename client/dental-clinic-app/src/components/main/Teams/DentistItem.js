@@ -1,4 +1,9 @@
 import { useForm } from '../../../hooks/useForm';
+import { Link } from 'react-router-dom';
+
+import { useContext } from 'react';
+
+import { AuthContext } from '../../../contexts/AuthContext';
 
 const TeamFormKeys = {
     DoctorId: 'doctor',
@@ -8,6 +13,8 @@ const TeamFormKeys = {
 export const DentistItem = (
     inputData
 ) => {
+
+    const { isAuthenticated } = useContext(AuthContext);
 
     const { values, changeHandler, onSubmit } = useForm({
         [TeamFormKeys.DoctorId]: inputData.id,
@@ -22,11 +29,11 @@ export const DentistItem = (
                     <div className="doctor">
                         <input
                             type="text"
-                            id={TeamFormKeys.DoctorId} 
+                            id={TeamFormKeys.DoctorId}
                             name={TeamFormKeys.DoctorId}
                             value={values[TeamFormKeys.DoctorId]}
                             onChange={changeHandler}
-                            style={{display:"none"}}
+                            style={{ display: "none" }}
                         />
                         <input
                             type="text"
@@ -34,7 +41,7 @@ export const DentistItem = (
                             name={TeamFormKeys.Name}
                             value={values[TeamFormKeys.Name]}
                             onChange={changeHandler}
-                            style={{display:"none"}}
+                            style={{ display: "none" }}
                         />
                         <div className="doctor-logo">
                             <img src={inputData.ImageUrl} width="100" height="100" />
@@ -52,10 +59,21 @@ export const DentistItem = (
                             </details>
 
                         </div>
-
-                        <div className="doctor-btn">
-                            <button className="doctor-btn-btn" type="submit">Book now</button>
-                        </div>
+                        {isAuthenticated && (
+                            <div className="doctor-btn">
+                                <button className="doctor-btn-btn" type="submit">Book now</button>
+                            </div>
+                        )}
+                        {!isAuthenticated && (
+                            <>
+                                <div className="container h-100 d-flex justify-content-center">
+                                    <p>To reserve an appointment you must login. </p>
+                                </div>
+                                <div className="container h-100 d-flex justify-content-center">
+                                    <Link className="reg" to="/Users/Login">Login</Link>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </form>
             </td>

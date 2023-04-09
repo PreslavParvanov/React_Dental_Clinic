@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+
 import { routeAddresses } from '../../Router';
 
+import { AuthContext } from '../../contexts/AuthContext';
 
 export const Navigation = () => {
+    const { id, isAuthenticated } = useContext(AuthContext);
     return (
         <nav b-j3bformqou="" className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div b-j3bformqou="" className="container">
@@ -21,15 +25,38 @@ export const Navigation = () => {
                         <li b-j3bformqou="" className="nav-item">
                             <Link className="nav-link text-dark" to="/Team">Team</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link text-dark" to={routeAddresses.reports}>Reports</Link>
-                        </li>
-                        <li b-j3bformqou="" className="nav-item">
-                            <Link className="nav-link text-dark" to="/Users/Login">Login</Link>
-                        </li>
-                        <li b-j3bformqou="" className="nav-item">
-                            <Link className="nav-link text-dark" to="/Users/Registration">Registration</Link>
-                        </li>
+
+                        {isAuthenticated && id == '385061ac-47d3-4265-94df-362492db4d4a' && (
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-dark" to={routeAddresses.reports}>Reports</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-dark" to={routeAddresses.dentists}>Dentist</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-dark" to={routeAddresses.createSchedule}>Schedule</Link>
+                                </li>
+                                
+                            </>
+                        )}
+
+                        {!isAuthenticated && (
+                            <>
+                                <li b-j3bformqou="" className="nav-item">
+                                    <Link className="nav-link text-dark" to="/Users/Login">Login</Link>
+                                </li>
+                                <li b-j3bformqou="" className="nav-item">
+                                    <Link className="nav-link text-dark" to="/Users/Registration">Registration</Link>
+                                </li>
+                            </>
+                        )}
+                        {isAuthenticated && (
+                            <li b-j3bformqou="" className="nav-item">
+                                <Link className="nav-link text-dark" to="/Users/Logout">Logout</Link>
+                            </li>
+                        )}
+
                         <ul className="navbar-nav">
                         </ul>
                     </ul>

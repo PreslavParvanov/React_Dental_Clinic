@@ -6,5 +6,12 @@ export const routeAddresses = {
     'reports': '/Reports',
     'reportDentists': '/Reports/Dentists',
     'reportDentistSchedule': '/Reports/DentistSchedule',
-    'reportDentistScheduleResult': '/Reports/DentistSchedule/Result'
+    'reportDentistScheduleResult': '/Reports/DentistSchedule/Result',
+    'dentists': '/Dentist/All',
+    'createDentist': '/Dentist/Create',
+    'editDentist': '/Dentist/Edit/:dentistId',
+    'registration': '/Users/Registration',
+    'createSchedule': '/Schedule/Create',
+    'login': '/Users/Login',
+    'logout': '/Users/Logout'
 }
